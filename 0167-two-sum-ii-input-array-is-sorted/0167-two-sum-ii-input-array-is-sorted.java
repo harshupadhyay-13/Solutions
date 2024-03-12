@@ -1,20 +1,20 @@
-import java.util.*;
-
 class Solution {
     public int[] twoSum(int[] numbers, int target) {
-        int n = numbers.length;
+        int left = 0;
+        int right = numbers.length - 1;
         
-        Map<Integer, Integer> map = new HashMap<>();
-        
-        for (int i = 0; i < n; i++) {
-            int complement = target - numbers[i];
-            if (map.containsKey(complement)) {
-                return new int[] { map.get(complement) + 1, i + 1 };
-            } 
-            map.put(numbers[i], i);
+        while (left < right) {
+            int sum = numbers[left] + numbers[right];
+            if (sum == target) {
+                return new int[] { left + 1, right + 1 };
+            } else if (sum < target) {
+                left++;
+            } else {
+                right--;
+            }
         }
         
-        // Return statement added to handle cases where no solution is found
-        return new int[] { -1, -1 }; // This line can be modified based on your requirements
+        // If no solution is found, return an empty array or throw an exception as needed
+        return new int[] {};
     }
 }
